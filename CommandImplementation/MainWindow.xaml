@@ -1,0 +1,38 @@
+﻿<Window
+    x:Class="CommandImplementation.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="MainWindow"
+    Width="800"
+    Height="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*" />
+            <ColumnDefinition Width="60*" />
+        </Grid.ColumnDefinitions>
+        <ListBox ItemsSource="{Binding ItemList}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="Azure">
+                        <StackPanel Margin="20,3" Orientation="Horizontal">
+                            <TextBlock Margin="0,2,10,0" Text="Click  &gt;&gt;  " />
+                            <Button
+                                Width="90"
+                                Height="25"
+                                Command="{Binding DataContext.ClickMeCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"
+                                CommandParameter="{Binding}"
+                                Content="{Binding AnimalName}" />
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <TextBlock
+            Grid.Column="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontSize="25"
+            Text="{Binding ClickedText}" />
+    </Grid>
+</Window>
